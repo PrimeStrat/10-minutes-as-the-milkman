@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtar3ignkvdu2"]
+
+[ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_g0wj1"]
+[ext_resource type="Texture2D" uid="uid://do8wedm3fjr1o" path="res://Player/Sprites/player.png" id="2_ue7s2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0wlyi"]
+radius = 7.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mhcfl"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_g0wj1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 11)
+shape = SubResource("CircleShape2D_0wlyi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 9)
+texture = ExtResource("2_ue7s2")
+hframes = 4
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mhcfl")
+}
+autoplay = "idle"
