@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cffcv75cergtf"]
 
 [ext_resource type="PackedScene" uid="uid://dtar3ignkvdu2" path="res://player.tscn" id="1_ajc0w"]
+[ext_resource type="PackedScene" uid="uid://ogwt0k5ycsg3" path="res://shooter.tscn" id="2_jaxth"]
 [ext_resource type="PackedScene" uid="uid://ccctnkqtothsx" path="res://Tile Maps/level.tscn" id="2_wakav"]
-[ext_resource type="PackedScene" uid="uid://c37a8d5d2pqyu" path="res://enemy.tscn" id="3_igie6"]
 
 [node name="Playground" type="Node2D"]
 
@@ -12,5 +12,5 @@ position = Vector2(165, 75)
 [node name="Level" parent="." instance=ExtResource("2_wakav")]
 layer_0/tile_data = PackedInt32Array(0, 196608, 0, 65536, 196608, 1, 131072, 196608, 1, 196608, 196608, 1, 262144, 196608, 2, 1, 262144, 0, 65537, 262144, 1, 131073, 262144, 1, 196609, 262144, 1, 262145, 262144, 2, 2, 262144, 0, 65538, 262144, 1, 131074, 262144, 1, 196610, 262144, 1, 262146, 262144, 2, 3, 262144, 0, 65539, 262144, 1, 196611, 262144, 1, 262147, 262144, 2, 4, 262144, 0, 65540, 262144, 1, 131076, 262144, 1, 196612, 262144, 1, 262148, 262144, 2, 5, 262144, 0, 65541, 262144, 1, 131077, 262144, 1, 196613, 262144, 1, 262149, 262144, 2, 6, 262144, 0, 65542, 262144, 1, 131078, 262144, 1, 196614, 262144, 1, 262150, 262144, 2, 7, 262144, 0, 65543, 262144, 1, 131079, 262144, 1, 196615, 262144, 1, 262151, 262144, 2, 8, 262144, 0, 65544, 262144, 1, 131080, 262144, 1, 196616, 262144, 1, 262152, 262144, 2, 9, 262144, 0, 65545, 262144, 1, 131081, 262144, 1, 196617, 262144, 1, 262153, 262144, 2, 10, 327680, 0, 65546, 327680, 1, 131082, 327680, 1, 196618, 327680, 1, 262154, 327680, 2, 131075, 262144, 1)
 
-[node name="Enemy" parent="." instance=ExtResource("3_igie6")]
-position = Vector2(29, 26)
+[node name="Node2D" parent="." instance=ExtResource("2_jaxth")]
+position = Vector2(165, 75)

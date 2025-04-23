@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ogwt0k5ycsg3"]
+
+[ext_resource type="Script" path="res://shooter.gd" id="1_4rqnl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2ykf"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_4rqnl")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_c2ykf")
+
+[node name="Node2D" type="Node2D" parent="CharacterBody2D"]
+position = Vector2(15, 0)

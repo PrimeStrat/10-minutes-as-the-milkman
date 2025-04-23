@@ -1,22 +1,155 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtar3ignkvdu2"]
+[gd_scene load_steps=16 format=3 uid="uid://dtar3ignkvdu2"]
 
 [ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_g0wj1"]
 [ext_resource type="Texture2D" uid="uid://do8wedm3fjr1o" path="res://Player/Sprites/player.png" id="2_ue7s2"]
+[ext_resource type="Script" path="res://Player/Scripts/playerStateMachine.gd" id="3_8iao0"]
+[ext_resource type="Script" path="res://Player/Scripts/state_idle.gd" id="4_smfjk"]
+[ext_resource type="Script" path="res://Player/Scripts/state_walk.gd" id="5_4732s"]
+[ext_resource type="PackedScene" uid="uid://dxifw5iom51vw" path="res://shooter.tscn" id="6_yovdd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0wlyi"]
 radius = 7.0
 
+[sub_resource type="Animation" id="Animation_6udpi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_slp5v"]
+resource_name = "idle_down"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4kgi7"]
+resource_name = "idle_side"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_7cbc1"]
+resource_name = "idle_up"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_mt786"]
+resource_name = "move_down"
+length = 0.2
+loop_mode = 2
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 8]
+}
+
+[sub_resource type="Animation" id="Animation_ofbr8"]
+resource_name = "move_side"
+length = 0.2
+loop_mode = 2
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [5, 9]
+}
+
+[sub_resource type="Animation" id="Animation_qbmlb"]
+resource_name = "move_up"
+length = 0.2
+loop_mode = 2
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [6, 10]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mhcfl"]
+_data = {
+"RESET": SubResource("Animation_6udpi"),
+"idle_down": SubResource("Animation_slp5v"),
+"idle_side": SubResource("Animation_4kgi7"),
+"idle_up": SubResource("Animation_7cbc1"),
+"move_down": SubResource("Animation_mt786"),
+"move_side": SubResource("Animation_ofbr8"),
+"move_up": SubResource("Animation_qbmlb")
+}
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 16
+motion_mode = 1
+wall_min_slide_angle = 0.174533
 script = ExtResource("1_g0wj1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 11)
+position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_0wlyi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, 9)
+position = Vector2(0, -1)
 texture = ExtResource("2_ue7s2")
 hframes = 4
 vframes = 3
@@ -26,3 +159,19 @@ libraries = {
 "": SubResource("AnimationLibrary_mhcfl")
 }
 autoplay = "idle"
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_8iao0")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_smfjk")
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("5_4732s")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("5_4732s")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Node2D" parent="." instance=ExtResource("6_yovdd")]
