@@ -17,5 +17,4 @@ This is my first attempt at learning game development through the creation of an
 
 # Future Plans
 
-- There are currently no plans to continue this project, rather, this project is likely to be turned into a Godot template for other developments. You can read more in my paper here: https://docs.google.com/document/d/1Lb87vdjyEbR5PRNLnwpTBg7XEgzbNqmiupRyDbZ313k/edit?usp=sharing
-- You MUST go to the same school as my to access the doc.
+- There are currently no plans to continue this project, rather, this project is likely to be turned into a Godot template for other developments.
